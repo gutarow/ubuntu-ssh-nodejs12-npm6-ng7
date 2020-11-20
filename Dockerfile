@@ -26,7 +26,9 @@ RUN chmod 777 ~/setup_12.x
 
 RUN cd ~ && ./setup_12.x
 
-RUN apt-get update -y && apt-get install -y nodejs gcc g++ make
+RUN apt-get update -y && apt-get install -y nodejs gcc g++ make && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/apt/lists/*
 
 RUN npm config set registry http://registry.npmjs.org/ && \
    npm install -g @angular/cli@7
