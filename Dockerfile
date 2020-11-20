@@ -21,7 +21,7 @@ RUN apt-get update -y && apt-get install -y \
   rm -rf /var/lib/apt/lists/*
   
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && /
-  apt -y install nodejs \
+  apt-get -y install nodejs \
   --no-install-recommends && \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/*
