@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:bionic
 MAINTAINER Gutar "<admin@escolasoft.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -10,14 +10,23 @@ RUN apt-get update -y && apt-get install -y \
   gzip \
   openssh-client \
   unzip \
+  wget \
+  dirmngr \
+  apt-transport-https \
+  lsb-release \
+  ca-certificates \
   zip \
   --no-install-recommends && \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/*
-  
-RUN curl -sL https://deb.nodesource.com/setup_12.x -o ~/nodesource_setup.sh && \
-  chmod 777 ~/nodesource_setup.sh && \
-  ~/nodesource_setup.sh
 
-#RUN npm config set registry http://registry.npmjs.org/ && \
-#   npm install -g @angular/cli@7
+RUN cd ~ && wget https://deb.nodesource.com/setup_12.x --no-check-certificate
+
+RUN chmod 777 ~/setup_12.x
+
+RUN cd ~ && ./setup_12.x
+
+RUN apt-get update -y && apt-get install -y nodejs gcc g++ make
+
+RUN npm config set registry http://registry.npmjs.org/ && \
+   npm install -g @angular/cli@7
