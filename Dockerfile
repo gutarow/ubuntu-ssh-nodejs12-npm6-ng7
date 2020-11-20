@@ -15,9 +15,9 @@ RUN apt-get update -y && apt-get install -y \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/*
   
-RUN curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh && \
-  chmod 777 nodesource_setup.sh && \
-  ./nodesource_setup.sh
+RUN curl -sL https://deb.nodesource.com/setup_12.x -o ~/nodesource_setup.sh && \
+  chmod 777 ~/nodesource_setup.sh && \
+  ~/nodesource_setup.sh
 
 #RUN npm config set registry http://registry.npmjs.org/ && \
 #   npm install -g @angular/cli@7
